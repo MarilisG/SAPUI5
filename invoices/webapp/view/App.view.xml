@@ -1,0 +1,43 @@
+<mvc:View 
+controllerName="invoices.controller.App"
+    xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc"
+    displayBlock="true"> 
+    <Shell>
+    <App> 
+        <pages> 
+            <!-- <Page title="{i18n>appTitle}"> 
+                <content>
+                        <Panel headerText="{i18n>helloPanel}" class="sapUiResponsiveMargin" width="auto"> 
+                            <content>
+                                <Button class="sapUiMediumMarginBottom"
+                                        text="{i18n>showHelloButtonText}" 
+                                        press="onShowHello"
+                                        />
+                                <Input value="{/recipient/name}"
+                                description="Insisto {/recipient/name}" 
+                                valueLiveUpdate="true"
+                                width="60%"/> 
+                                <Text text=";) {/recipient/name}" class="sapUiResponsiveMargin boldElements" />                             
+                            </content>
+                        </Panel>
+                </content>
+            </Page>  -->
+            <Page id="page" title="{i18n>appTitle}"> 
+                <headerContent>
+                    <Button id="helloDialogHeader"
+                            press="onOpenDialogHeader"
+                            icon="sap-icon://hello-world"
+                            class="sapUiSmallMarginEnd"/>
+                </headerContent>
+                <content>
+                <mvc:XMLView viewName="invoices.view.HelloPanel" 
+                         type="XML"/>
+                <mvc:XMLView viewName="invoices.view.InvoicesList" 
+                         type="XML"/>  
+                </content>
+            </Page>          
+        </pages> 
+    </App>
+    </Shell>
+</mvc:View>

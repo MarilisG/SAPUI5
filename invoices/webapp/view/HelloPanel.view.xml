@@ -1,0 +1,40 @@
+<mvc:View controllerName="invoices.controller.HelloPanel"
+          xmlns="sap.m"
+          xmlns:core="sap.ui.core"
+          xmlns:mvc="sap.ui.core.mvc"
+          displayBlock="true">  
+            <!-- <Page> 
+                <customHeader>
+                    <Bar>
+                        <contentLeft>
+                            <Title text="{i18n>appTitle}"/>
+                        </contentLeft>
+                    </Bar>
+                </customHeader>
+                <content> -->
+                        <Panel  headerText="{i18n>helloPanel}" 
+                                class="sapUiResponsiveMargin" 
+                                expandable="true"
+                                expanded="true">                             
+                                <Button id="helloDialogButton" 
+                                    text="{i18n>helloDialogBut}"
+                                    icon="sap-icon://action"
+                                    press="onOpenDialog"                                     
+                                    class="sapUiSmallMarginEnd"/>                                                         
+                                <Button class="sapUiSmallMarginEnd"
+                                        text="{i18n>showHelloButtonText}" 
+                                        press="onShowHello"/>
+                                <Input  class="sapUiSmallMarginEnd"  
+                                        value="{/recipient/name}"
+                                        description="Insisto {/recipient/name}" 
+                                        valueLiveUpdate="true"
+                                        width="60%"/> 
+                                <Text text=":) {/recipient/name}" 
+                                      class="sapUiResponsiveMargin boldElements" />                     
+                        </Panel>
+                        <core:Fragment fragmentName="invoices.fragment.Form01"
+                                        type="XML"/>
+                <!-- </content>
+            </Page>  -->
+
+</mvc:View>
