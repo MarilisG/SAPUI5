@@ -1,0 +1,21 @@
+<mvc:View
+	controllerName="invoices.controller.Details"
+	xmlns="sap.m"
+    xmlns:custom="invoices.control"
+	xmlns:mvc="sap.ui.core.mvc" >
+    <Page title="{i18n>detailsPageTitle}" showNavButton="true" navButtonPress="onNavBack">
+        <ObjectHeader title="{northwind>ProductName}">
+        <attributes>
+            <ObjectAttribute text="{northwind>ShipName}"/>
+            <ObjectAttribute text="{northwind>ShipAddress}"/> 
+            <ObjectAttribute text="{northwind>ShipCity}"/> 
+            <ObjectAttribute text="{northwind>ShipCountry}"/>
+            <ObjectAttribute text="{northwind>CustomerID}"/>
+            <ObjectAttribute text="{northwind>CustomerName}"/>
+        </attributes>
+        </ObjectHeader>
+        <custom:ProductRating   id="rating" 
+                                class="sapUiSmallMarginBeginEnd" 
+                                change="onRatingChange"/>
+    </Page>
+</mvc:View>
