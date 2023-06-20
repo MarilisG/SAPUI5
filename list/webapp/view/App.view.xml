@@ -1,0 +1,78 @@
+<mvc:View controllerName="list.controller.App"
+    xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc" 
+    xmlns:core="sap.ui.core"
+    displayBlock="true">
+    <Shell id="shell">
+        <App>
+            <pages>
+                <Page id="page" title="{i18n>title}">
+                    <content>
+                        <HBox>
+                            <Label text="{i18n>labelEmployee}"
+                                    class="sapUiSmallMarginEnd"></Label>
+                            <Input id="input"
+                                   maxLength="6"
+                                   width="12.5rem"
+                                   class="sapUiSmallMarginEnd"
+                                   liveChange="onValidate"
+                                   value="{/EmployeeId}"></Input>  
+                            <Label id="label"
+                                    text="{i18n>labelCountry}"
+                                   class="sapUiSmallMarginEnd" ></Label>   
+                            <Select id="select"
+                                    forceSelection="false" 
+                                    items="{/ListCountry}"
+                                    selectedKey="{/CountryKey}">
+                                    <items>
+                                        <core:Item key="{Key}" text="{Text}"/>
+                                    </items>
+                            </Select>    
+                            <Button id="btnFilter" 
+                                    text="{i18n>btnFilter}" 
+                                    icon="sap-icon://search"
+                                    press="onFilter"
+                                    class="sapUiSmallMarginEnd"/>
+                            <Button id="btnClearFilter" 
+                                    text="{i18n>btnClearFilter}" 
+                                    icon="sap-icon://clear-filter"
+                                    press="onClearFilter"
+                                    class="sapUiSmallMarginEnd"/>
+                        </HBox>
+                        <HBox>
+                            <Panel>
+                                <Table id="tableEmployee" 
+                                       items="{/Employees}">                                    
+                                        <columns>
+                                            <Column hAlign="Right" minScreenWidth="Small" demandPopin="true">
+                                                <Label text="{i18n>tableId}"/>
+                                            </Column>
+                                            <Column minScreenWidth="Small" demandPopin="true">
+                                                <Label text="{i18n>tableName}"/>
+                                            </Column>
+                                            <Column minScreenWidth="Small" demandPopin="true">
+                                                <Label text="{i18n>tableCountry}"/>
+                                            </Column>
+                                            <Column minScreenWidth="Small" demandPopin="true">
+                                                <Label text="{i18n>tableCity}"/>
+                                            </Column>                                                                                                                                    
+                                        </columns>
+                                        <items>
+                                            <ColumnListItem>
+                                                <cells>
+                                                    <Text text="{EmployeeID}"/>
+                                                    <Text text="{FirstName},{LastName}"/>
+                                                    <Text text="{Country}"/>
+                                                    <Text text="{City}"/>
+                                                </cells>
+                                            </ColumnListItem>
+                                        </items>
+                                </Table>
+                            </Panel>                        
+                        </HBox>
+                    </content>
+                </Page>
+            </pages>
+        </App>
+    </Shell>
+</mvc:View>

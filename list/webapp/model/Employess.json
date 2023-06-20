@@ -1,0 +1,121 @@
+{
+    "EmployeeId": "",
+    "CountryKey": "",
+    "Amount": 5,
+    "ListCountry": [
+        {
+            "Key": "US",
+            "Text": "United States"
+        },
+        {
+            "Key": "UK",
+            "Text": "United Kindom"
+        },
+        {
+            "Key": "ES",
+            "Text": "Spain"
+        }                
+    ],
+    "Employees":[
+        {
+            "EmployeeID": "1",
+            "LastName": "Garcia Lopez",
+            "FirstName": "Maria",
+            "Country": "ES",   
+            "City": "Madrid",
+            "PostalCode": "28021",
+            "Orders": [
+                {
+                    "OrderID": "208",
+                    "Freight": "65",
+                    "ShipAddress": "Calle alcala"
+                },
+                {
+                    "OrderID": "2096",
+                    "Freight": "21",
+                    "ShipAddress": "Calle mayor"
+                }                
+            ]         
+        },
+        {
+            "EmployeeID": "2",
+            "LastName": "Fernandez Diaz",
+            "FirstName": "Pedro",
+            "Country": "ES",   
+            "City": "Granada",
+            "PostalCode": "18008",
+            "Orders": [
+                {
+                    "OrderID": "1056",
+                    "Freight": "78",
+                    "ShipAddress": "Calle alcala"
+                },
+                {
+                    "OrderID": "6731",
+                    "Freight": "90",
+                    "ShipAddress": "Calle mayor"
+                }                
+            ]         
+        },      
+        {
+            "EmployeeID": "3",
+            "LastName": "Davolio",
+            "FirstName": "Nancy",
+            "Country": "US",   
+            "City": "Seattle",
+            "PostalCode": "98052",
+            "Orders": [
+                {
+                    "OrderID": "789",
+                    "Freight": "34",
+                    "ShipAddress": "Calle alcala"
+                },
+                {
+                    "OrderID": "3057",
+                    "Freight": "90",
+                    "ShipAddress": "Calle mayor"
+                }                
+            ]         
+        },
+        {
+            "EmployeeID": "4",
+            "LastName": "Peacock",
+            "FirstName": "Margaret",
+            "Country": "US",   
+            "City": "Redmond",
+            "PostalCode": "28021",
+            "Orders": [
+                {
+                    "OrderID": "208",
+                    "Freight": "65",
+                    "ShipAddress": "Calle alcala"
+                },
+                {
+                    "OrderID": "2096",
+                    "Freight": "21",
+                    "ShipAddress": "Calle mayor"
+                }                
+            ]         
+        },
+        {
+            "EmployeeID": "5",
+            "LastName": "Steven",
+            "FirstName": "Buchanan",
+            "Country": "UK",   
+            "City": "London",
+            "PostalCode": "18008",
+            "Orders": [
+                {
+                    "OrderID": "1056",
+                    "Freight": "78",
+                    "ShipAddress": "Calle alcala"
+                },
+                {
+                    "OrderID": "6731",
+                    "Freight": "90",
+                    "ShipAddress": "Calle mayor"
+                }                
+            ]         
+        }         
+    ]
+}
