@@ -1,0 +1,88 @@
+<mvc:View controllerName="employees.controller.App"
+    xmlns:mvc="sap.ui.core.mvc" 
+    xmlns:core="sap.ui.core"
+    displayBlock="true"
+    xmlns="sap.m">
+    <Shell id="shell">
+        <App>
+            <pages>
+                <Page id="page" title="{i18n>title}">
+                    <content>
+                        <HBox>
+                            <Label text="{i18n>labelEmployee}"
+                                    class="sapUiSmallMargin"></Label>
+                            <Input id="input" 
+                                   width="12.5rem"
+                                   class="sapUiSmallMarginEnd"
+                                   liveChange="onFilter"
+                                   value="{jsonCountries>/EmployeeId}"
+                                   valueLiveUpdate="true"></Input>  
+                            <Label id="label"
+                                    text="{i18n>labelCountry}"
+                                   class="sapUiSmallMargin"></Label>   
+                            <Select id="select"
+                                    forceSelection="false" 
+                                    items="{jsonCountries>/ListCountry}"
+                                    selectedKey="{jsonCountries>/CountryKey}">
+                                    <items>
+                                        <core:Item key="{jsonCountries>Key}" text="{jsonCountries>Text}"/>
+                                    </items>
+                            </Select>    
+                            <Button id="btnFilter" 
+                                    text="{i18n>btnFilter}" 
+                                    icon="sap-icon://search"
+                                    press="onFilter"
+                                    class="sapUiSmallMarginEnd"/>
+                            <Button id="btnClearFilter" 
+                                    text="{i18n>btnClearFilter}" 
+                                    icon="sap-icon://clear-filter"
+                                    press="onClearFilter"
+                                    class="sapUiSmallMarginEnd"/>
+                        </HBox>
+                        <HBox>
+                            <Panel>
+                                <Button id="btnShowCity" 
+                                        class="sapUiSmallMarginEnd"
+                                        text="{i18n>showCity}"
+                                        visible="{jsonConfig>/visibleBtnShowCity}"
+                                        press="onShowCity"/>
+                                <Button id="btnHideCity" 
+                                        class="sapUiSmallMarginEnd"
+                                        text="{i18n>hideCity}"
+                                        visible="{jsonConfig>/visibleBtnHideCity}"
+                                        press="onHideCity"/>                                        
+                                <Table id="tableEmployee" 
+                                       items="{jsonEmployees>/Employees}">                                    
+                                        <columns>
+                                            <Column hAlign="Right" minScreenWidth="Small" demandPopin="true" visible="{jsonConfig>/visibleID}">
+                                                <Label text="{i18n>tableId}"/>
+                                            </Column>
+                                            <Column minScreenWidth="Small" demandPopin="true" visible="{jsonConfig>/visibleName}">
+                                                <Label text="{i18n>tableName}"/>
+                                            </Column>
+                                            <Column minScreenWidth="Small" demandPopin="true" visible="{jsonConfig>/visibleCountry}">
+                                                <Label text="{i18n>tableCountry}"/>
+                                            </Column>
+                                            <Column minScreenWidth="Small" demandPopin="true" visible="{jsonConfig>/visibleCity}">
+                                                <Label text="{i18n>tableCity}"/>
+                                            </Column>                                                                                                                                    
+                                        </columns>
+                                        <items>
+                                            <ColumnListItem type="Active" press="showPostalCode">
+                                                <cells>
+                                                    <Text text="{jsonEmployees>EmployeeID}"/>
+                                                    <Text text="{jsonEmployees>FirstName},{jsonEmployees>LastName}"/>
+                                                    <Text text="{jsonEmployees>Country}"/>
+                                                    <Text text="{jsonEmployees>City}"/>
+                                                </cells>
+                                            </ColumnListItem>
+                                        </items>
+                                </Table>
+                            </Panel>                        
+                        </HBox>
+                    </content>
+                </Page>
+            </pages>
+        </App>
+    </Shell>
+</mvc:View>
