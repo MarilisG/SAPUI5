@@ -68,7 +68,7 @@
                                             </Column>                                                                                                                                    
                                         </columns>
                                         <items>
-                                            <ColumnListItem type="Active" press="showPostalCode">
+                                            <ColumnListItem type="Active" press="showOrders2">
                                                 <cells>
                                                     <Text text="{jsonEmployees>EmployeeID}"/>
                                                     <Text text="{jsonEmployees>FirstName},{jsonEmployees>LastName}"/>
@@ -78,6 +78,7 @@
                                             </ColumnListItem>
                                         </items>
                                 </Table>
+                                <HBox id="ordersTable"></HBox>
                             </Panel>                        
                         </HBox>
                     </content>
