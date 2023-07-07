@@ -94,28 +94,30 @@
       },
       "routes": [
         {
-          "name": "RouteApp",
+          "name": "RouteMain",
           "pattern": ":?query:",
           "target": [
-            "TargetApp"
+            "TargetMain"
           ]
         }
       ],
       "targets": {
-        "TargetApp": {
-          "viewType": "XML",
-          "transition": "slide",
-          "clearControlAggregation": false,
-          "viewId": "App",
-          "viewName": "App"
+         "TargetMain": {         
+          "viewName": "Main"
+        },
+        "targetMasterEmployee":{
+          "viewName": "MasterEmployee"
+        },
+        "targetDetailsEmployee":{
+          "viewName": "DetailsEmployee"
         }
       }
     },
     "rootView": {
-      "viewName": "employees.view.App",
+      "viewName": "employees.view.Main",
       "type": "XML",
       "async": true,
-      "id": "App"
+      "id": "Main"
     }
   }
 }

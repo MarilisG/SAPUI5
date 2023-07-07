@@ -1,44 +1,17 @@
 sap.ui.define([
     "sap/ui/core/mvc/Controller",
-    "sap/ui/model/json/JSONModel",
     "sap/ui/model/Filter",
     "sap/ui/model/FilterOperator",
-	"sap/m/ColumnListItem"
+    "sap/ui/core/Fragment"
 ],
-    /**
-     * @param {typeof sap.ui.core.mvc.Controller} Controller
-     */
-    function (Controller,
-	JSONModel,
-	Filter,
-	FilterOperator,
-	ColumnListItem) {
+    function (Controller,Filter,FilterOperator,Fragment) {
         "use strict";
 
-        return Controller.extend("employees.controller.App", {
+        return Controller.extend("employees.controller.MasterEmployee", {
             onInit: function () {
-                this._loadModel();
-            },
-            _loadModel: function () {
-                let oView = this.getView(),  
-                oEmployees = new JSONModel(),
-                oCountries = new JSONModel(),
-                oConfig = new JSONModel(); 
-
-                //ruta relativa desde el archivo donde se llama
-                //ruta absoluta seria desde la raiz
-                oEmployees.loadData("../model/Employees.json");
-                oView.setModel(oEmployees,"jsonEmployees");  
-
-                oCountries.loadData("../model/Countries.json");
-                oView.setModel(oCountries,"jsonCountries");
-
-                oConfig.loadData("../model/Config.json");
-                oView.setModel(oConfig,"jsonConfig");
-            },
-            onFilter: function () {
-//                let oView = this.getView(),
-//                    oModel = oView.getModel(),                
+                this._oEventBus = sap.ui.getCore().getEventBus();
+            }, 
+            onFilter: function () {             
                 let oModel = this.getView().getModel("jsonCountries"),
                     aFilters = [];
                     
@@ -165,6 +138,36 @@ sap.ui.define([
                 oNewTable.bindElement("jsonEmployees>"+oBindingContext.getPath());//jsonEmployees>/Employees/4
 
                 oTable.addItem(oNewTable);
+            },
+            showOrders3: function (oEvent) {
+                let oIconPressed = oEvent.getSource(),
+                    oBindingContext = oIconPressed.getBindingContext("jsonEmployees"),
+                    oView = this.getView();
+
+                if (!this._pDialogOrders) {
+                    this._pDialogOrders = Fragment.load({
+                        id: oView.getId(),
+                        name: "employees.fragment.DialogOrders",
+                        controller: this
+                    }).then( function (oDialog) {
+                        oView.addDependent(oDialog);
+                        return oDialog;
+                    });
+                }
+                this._pDialogOrders.then(function (oDialog) {
+                    oDialog.bindElement("jsonEmployees>"+oBindingContext.getPath());//jsonEmployees>/Employees/4;
+                    oDialog.open();
+                });
+            },
+            onCloseOrders: function () {
+                this._pDialogOrders.then(function (oDialog) {
+                    oDialog.close();
+                });                
+            },
+            showDetails: function (oEvent) {
+                let sPath = oEvent.getSource().getBindingContext("jsonEmployees").getPath(); 
+                //Parametros(Channel,Event,Object)
+                this._oEventBus.publish("flexible","showDetails",sPath);             
             }
         });
     });
