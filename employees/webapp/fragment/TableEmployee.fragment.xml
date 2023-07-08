@@ -27,7 +27,8 @@
                                             <Column minScreenWidth="Small" demandPopin="true" visible="{jsonConfig>/visibleCity}">
                                                 <Label text="{i18n>tableCity}"/>
                                             </Column> 
-                                            <Column hAlign="Center">                                                <Label text="{i18n>tableShowDetails}"/>
+                                            <Column hAlign="Center">
+                                                <Label text="{i18n>tableShowDetails}"/>
                                             </Column>                                                                                                                                                                                
                                         </columns>
                                         <items>

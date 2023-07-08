@@ -5,7 +5,7 @@ sap.ui.define([
 
 	return Controller.extend("employees.controller.DetailsEmployee", {
         onInit: function() {       
-                    
+    
         }
 	});
 });

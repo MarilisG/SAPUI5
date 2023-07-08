@@ -166,7 +166,7 @@ sap.ui.define([
             },
             showDetails: function (oEvent) {
                 let sPath = oEvent.getSource().getBindingContext("jsonEmployees").getPath(); 
-                //Parametros(Channel,Event,Object)
+                //Parametros(sChannelId,sEvent,OData)
                 this._oEventBus.publish("flexible","showDetails",sPath);             
             }
         });

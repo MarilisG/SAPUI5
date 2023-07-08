@@ -14,12 +14,12 @@
                                                 layout="{jsonLayout>/ActiveKey}">
                             <f:beginColumnPages>
                                 <mvc:XMLView id="masterEmployeeView"
-                                             view= "employees.view.MasterEmployee"
+                                             viewName= "employees.view.MasterEmployee"
                                              type="XML" />
                             </f:beginColumnPages>
                             <f:midColumnPages>
                                 <mvc:XMLView id="detailsEmployeeView"
-                                             view= "employees.view.DetailsEmployee"
+                                             viewName= "employees.view.DetailsEmployee"
                                              type="XML" />                            
                             </f:midColumnPages>
                             <f:endColumnPages>

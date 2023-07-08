@@ -28,10 +28,10 @@ sap.ui.define([
             this._oEventBus = sap.ui.getCore().getEventBus();
             this._oEventBus.subscribe("flexible","showDetails",this.showEmployeeDetails.bind(this));
         },
-        showEmployeeDetails: function (sChannel, sEventName, sPath) {
+        showEmployeeDetails: function (sChannelId, sEvent, sPath) {
             let oDetailsView = this.getView().byId("detailsEmployeeView");
             oDetailsView.bindElement("jsonEmployees>"+sPath);
-            this.getView().getModel("jsonLayout").setProperty("/ActiveKey", "TwoColumnsMidExpand")
+            this.getView().getModel("jsonLayout").setProperty("/ActiveKey", "TwoColumnsMidExpanded")
         }
 	});
 });
