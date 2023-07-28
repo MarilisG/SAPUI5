@@ -43,7 +43,7 @@ sap.ui.define([
             },
             showPostalCode:function (oEvent) {
                 let oItem = oEvent.getSource(),
-                    oBindingContext = oItem.getBindingContext("jsonEmployees"),
+                    oBindingContext = oItem.getBindingContext("odataNorthwind"),
                     sPostal = oBindingContext.getProperty("PostalCode");
                     sap.m.MessageBox.success(sPostal);
             },
@@ -63,7 +63,7 @@ sap.ui.define([
                 let oTable = this.getView().byId("ordersTable");
                 oTable.destroyItems();//se debe eliminar ya que se crea uno nuevo cada vez que se llama
                 let oItem = oEvent.getSource(),
-                    oBindingContext = oItem.getBindingContext("jsonEmployees"),
+                    oBindingContext = oItem.getBindingContext("odataNorthwind"),
                     oOrders = oBindingContext.getProperty("Orders");
                 
                 let aColumnListItems = [];
@@ -92,7 +92,7 @@ sap.ui.define([
             showOrders2:function (oEvent) {
                 let oTable = this.byId("ordersTable"),
                     oItem = oEvent.getSource(),
-                    oBindingContext = oItem.getBindingContext("jsonEmployees");
+                    oBindingContext = oItem.getBindingContext("odataNorthwind");
 
                     oTable.destroyItems();
 
@@ -119,29 +119,29 @@ sap.ui.define([
                 let oColumnListItems = new sap.m.ColumnListItem();
 
                 let oCellOrderID = new sap.m.Label();
-                    oCellOrderID.bindProperty("text","jsonEmployees>OrderID");
+                    oCellOrderID.bindProperty("text","odataNorthwind>OrderID");
                     oColumnListItems.addCell(oCellOrderID);
                 let oCellFreight = new sap.m.Label();
-                    oCellFreight.bindProperty("text","jsonEmployees>Freight");
+                    oCellFreight.bindProperty("text","odataNorthwind>Freight");
                     oColumnListItems.addCell(oCellFreight);
                 let oCellShipAddress = new sap.m.Label();
-                    oCellShipAddress.bindProperty("text","jsonEmployees>ShipAddress");
+                    oCellShipAddress.bindProperty("text","odataNorthwind>ShipAddress");
                     oColumnListItems.addCell(oCellShipAddress);      
                     
                 let oBindingInfo = {
-                    model: "jsonEmployees",
+                    model: "odataNorthwind",
                     path: 'Orders',
                     template: oColumnListItems
                 };
 
                 oNewTable.bindAggregation("items",oBindingInfo);
-                oNewTable.bindElement("jsonEmployees>"+oBindingContext.getPath());//jsonEmployees>/Employees/4
+                oNewTable.bindElement("odataNorthwind>"+oBindingContext.getPath());//odataNorthwind>/Employees/4
 
                 oTable.addItem(oNewTable);
             },
             showOrders3: function (oEvent) {
                 let oIconPressed = oEvent.getSource(),
-                    oBindingContext = oIconPressed.getBindingContext("jsonEmployees"),
+                    oBindingContext = oIconPressed.getBindingContext("odataNorthwind"),
                     oView = this.getView();
 
                 if (!this._pDialogOrders) {
@@ -155,7 +155,7 @@ sap.ui.define([
                     });
                 }
                 this._pDialogOrders.then(function (oDialog) {
-                    oDialog.bindElement("jsonEmployees>"+oBindingContext.getPath());//jsonEmployees>/Employees/4;
+                    oDialog.bindElement("odataNorthwind>"+oBindingContext.getPath());//odataNorthwind>/Employees/4;
                     oDialog.open();
                 });
             },
@@ -165,7 +165,7 @@ sap.ui.define([
                 });                
             },
             showDetails: function (oEvent) {
-                let sPath = oEvent.getSource().getBindingContext("jsonEmployees").getPath(); 
+                let sPath = oEvent.getSource().getBindingContext("odataNorthwind").getPath(); 
                 //Parametros(sChannelId,sEvent,OData)
                 this._oEventBus.publish("flexible","showDetails",sPath);             
             }

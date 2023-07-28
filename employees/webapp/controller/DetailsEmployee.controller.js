@@ -6,8 +6,14 @@ sap.ui.define([
 
 	return Controller.extend("employees.controller.DetailsEmployee", {
         onInit: function() {       
-    
+			this._oEventBus = sap.ui.getCore().getEventBus();    
         },
+		onSaveIncidence: function (oEvent) {
+			let oIncidence = oEvent.getSource().getParent().getParent(),
+				oRowIncidence = oIncidence.getBindingContext("incidenceModel"),				
+				oObject = oRowIncidence.getObject();
+			this._oEventBus.publish("incidence","onSaveIncidence",oObject);
+		},
 		callFormatter: formatter,
 		onCreateIncidence: function () {
 			let oTableIncidence= this.byId("tableIncidence"),

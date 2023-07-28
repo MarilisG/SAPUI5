@@ -9,7 +9,7 @@
                     alignItems="Center" 
                     justifyContent="Center">
                 <items>
-                    <Text text="{jsonEmployees>LastName}, {jsonEmployees>FirstName}"
+                    <Text text="{odataNorthwind>LastName}, {odataNorthwind>FirstName}"
                             class="boldText"/>
                 </items>
             </FlexBox>
@@ -19,11 +19,11 @@
                 <items>
                     <VBox>
                         <Text text="{i18n>employeeId}:" class="boldText sapUiSmallMarginBegin"/>    
-                        <Text text="{jsonEmployees>EmployeeID}" class="sapUiSmallMarginBegin sapUiSmallMarginEnd"/>                
+                        <Text text="{odataNorthwind>EmployeeID}" class="sapUiSmallMarginBegin sapUiSmallMarginEnd"/>                
                     </VBox>
                     <VBox>
                         <Text text="{i18n>titleEmployee}:" class="boldText sapUiSmallMarginEnd"/>    
-                        <Text text="{jsonEmployees>Title}" class="sapUiSmallMarginBegin sapUiSmallMarginEnd"/>                
+                        <Text text="{odataNorthwind>Title}" class="sapUiSmallMarginBegin sapUiSmallMarginEnd"/>                
                     </VBox>
                 </items>
             </FlexBox>  
@@ -31,22 +31,22 @@
                     justifyContent="SpaceBetween">
                 <HBox>
                     <Text text="{i18n>countryCode}:" class="boldText sapUiSmallMarginBegin"/>    
-                    <Text text="{jsonEmployees>Country}" class="sapUiSmallMarginBegin sapUiSmallMarginEnd" width="100%"/>             
+                    <Text text="{odataNorthwind>Country}" class="sapUiSmallMarginBegin sapUiSmallMarginEnd" width="100%"/>             
                 </HBox>
                 <HBox>
                     <Text text="{i18n>city}:" class="boldText sapUiTinyMarginEnd"/>    
-                    <Text text="{jsonEmployees>City}" class="sapUiSmallMarginBegin sapUiSmallMarginEnd" width="100%"/>             
+                    <Text text="{odataNorthwind>City}" class="sapUiSmallMarginBegin sapUiSmallMarginEnd" width="100%"/>             
                 </HBox>
                 <HBox>
                     <Text text="{i18n>postalCode}:" class="boldText sapUiTinyMarginEnd"/>    
-                    <Text text="{jsonEmployees>PostalCode}" class="sapUiSmallMarginBegin sapUiSmallMarginEnd" width="100%"/>             
+                    <Text text="{odataNorthwind>PostalCode}" class="sapUiSmallMarginBegin sapUiSmallMarginEnd" width="100%"/>             
                 </HBox>                        
             </FlexBox>   
         </Panel>    
         <Panel class="sapUiSizeCompact" backgroundDesign="Transparent">
             <headerToolbar>
                 <Toolbar>
-                        <Title text="{i18n>incidence} {= ${jsonEmployees>Country} !== 'US' ? ${i18n>europe} : ${i18n>US}}"/>
+                        <Title text="{i18n>incidence} {= ${odataNorthwind>Country} !== 'US' ? ${i18n>europe} : ${i18n>US}}"/>
                         <ToolbarSpacer />
                         <Button text="{i18n>createIncidence}" 
                                 press="onCreateIncidence"/>

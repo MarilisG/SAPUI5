@@ -13,7 +13,7 @@
                                         visible="{jsonConfig>/visibleBtnHideCity}"
                                         press="onHideCity"/>                                        
                                 <Table id="tableEmployee" 
-                                       items="{jsonEmployees>/Employees}">                                    
+                                       items="{odataNorthwind>/Employees}">                                    
                                         <columns>
                                             <Column hAlign="Right" minScreenWidth="Small" demandPopin="true" visible="{jsonConfig>/visibleID}">
                                                 <Label text="{i18n>tableId}"/>
@@ -34,10 +34,10 @@
                                         <items>
                                             <ColumnListItem type="Navigation" press="showDetails">
                                                 <cells>
-                                                    <Text text="{jsonEmployees>EmployeeID}"/>
-                                                    <Text text="{jsonEmployees>FirstName},{jsonEmployees>LastName}"/>
-                                                    <Text text="{jsonEmployees>Country}"/>
-                                                    <Text text="{jsonEmployees>City}"/>
+                                                    <Text text="{odataNorthwind>EmployeeID}"/>
+                                                    <Text text="{odataNorthwind>FirstName},{odataNorthwind>LastName}"/>
+                                                    <Text text="{odataNorthwind>Country}"/>
+                                                    <Text text="{odataNorthwind>City}"/>
                                                     <core:Icon src="sap-icon://show" press="showOrders3"/>
                                                 </cells>
                                             </ColumnListItem>

@@ -33,6 +33,10 @@ server:
           - path: /v2
             url: https://services.odata.org
             destination: Northwind
+          - path: /sap/opu/odata/sap/YSAPUI5_SRV_01/
+            url: http://erp13.sap4practice.com:9037
+            client: '001'
+            destination: Logali
     - name: sap-fe-mockserver
       beforeMiddleware: csp
       configuration:
