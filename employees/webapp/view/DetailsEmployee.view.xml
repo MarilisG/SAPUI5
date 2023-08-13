@@ -1,0 +1,62 @@
+<mvc:View
+	controllerName="employees.controller.DetailsEmployee"
+        xmlns="sap.m"
+        xmlns:mvc="sap.ui.core.mvc">
+    
+    <Page title="{i18n>employeeDetails}">
+        <Panel>            
+            <FlexBox height="4.1rem" 
+                    alignItems="Center" 
+                    justifyContent="Center">
+                <items>
+                    <Text text="{odataNorthwind>LastName}, {odataNorthwind>FirstName}"
+                            class="boldText"/>
+                </items>
+            </FlexBox>
+            <FlexBox height="4.1rem" 
+                    alignItems="Start" 
+                    justifyContent="SpaceBetween">
+                <items>
+                    <VBox>
+                        <Text text="{i18n>employeeId}:" class="boldText sapUiSmallMarginBegin"/>    
+                        <Text text="{odataNorthwind>EmployeeID}" class="sapUiSmallMarginBegin sapUiSmallMarginEnd"/>                
+                    </VBox>
+                    <VBox>
+                        <Text text="{i18n>titleEmployee}:" class="boldText sapUiSmallMarginEnd"/>    
+                        <Text text="{odataNorthwind>Title}" class="sapUiSmallMarginBegin sapUiSmallMarginEnd"/>                
+                    </VBox>
+                </items>
+            </FlexBox>  
+            <FlexBox alignItems="Start"
+                    justifyContent="SpaceBetween">
+                <HBox>
+                    <Text text="{i18n>countryCode}:" class="boldText sapUiSmallMarginBegin"/>    
+                    <Text text="{odataNorthwind>Country}" class="sapUiSmallMarginBegin sapUiSmallMarginEnd" width="100%"/>             
+                </HBox>
+                <HBox>
+                    <Text text="{i18n>city}:" class="boldText sapUiTinyMarginEnd"/>    
+                    <Text text="{odataNorthwind>City}" class="sapUiSmallMarginBegin sapUiSmallMarginEnd" width="100%"/>             
+                </HBox>
+                <HBox>
+                    <Text text="{i18n>postalCode}:" class="boldText sapUiTinyMarginEnd"/>    
+                    <Text text="{odataNorthwind>PostalCode}" class="sapUiSmallMarginBegin sapUiSmallMarginEnd" width="100%"/>             
+                </HBox>                        
+            </FlexBox>   
+        </Panel>    
+        <Panel class="sapUiSizeCompact" backgroundDesign="Transparent">
+            <headerToolbar>
+                <Toolbar>
+                        <Title text="{i18n>incidence} {= ${odataNorthwind>Country} !== 'US' ? ${i18n>europe} : ${i18n>US}}"/>
+                        <ToolbarSpacer />
+                        <Button text="{i18n>createIncidence}" 
+                                press="onCreateIncidence"/>
+
+                </Toolbar>
+            </headerToolbar>
+        </Panel>        
+        <Panel  id="tableIncidence" 
+                class="sapUiNoContentPadding" 
+                backgroundDesign="Transparent"/>
+    </Page>
+
+</mvc:View>

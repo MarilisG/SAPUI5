@@ -1,0 +1,48 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+                            <Panel>
+                                <Button id="btnShowCity" 
+                                        class="sapUiSmallMarginEnd"
+                                        text="{i18n>showCity}"
+                                        visible="{jsonConfig>/visibleBtnShowCity}"
+                                        press="onShowCity"/>
+                                <Button id="btnHideCity" 
+                                        class="sapUiSmallMarginEnd"
+                                        text="{i18n>hideCity}"
+                                        visible="{jsonConfig>/visibleBtnHideCity}"
+                                        press="onHideCity"/>                                        
+                                <Table id="tableEmployee" 
+                                       items="{odataNorthwind>/Employees}">                                    
+                                        <columns>
+                                            <Column hAlign="Right" minScreenWidth="Small" demandPopin="true" visible="{jsonConfig>/visibleID}">
+                                                <Label text="{i18n>tableId}"/>
+                                            </Column>
+                                            <Column minScreenWidth="Small" demandPopin="true" visible="{jsonConfig>/visibleName}">
+                                                <Label text="{i18n>tableName}"/>
+                                            </Column>
+                                            <Column minScreenWidth="Small" demandPopin="true" visible="{jsonConfig>/visibleCountry}">
+                                                <Label text="{i18n>tableCountry}"/>
+                                            </Column>
+                                            <Column minScreenWidth="Small" demandPopin="true" visible="{jsonConfig>/visibleCity}">
+                                                <Label text="{i18n>tableCity}"/>
+                                            </Column> 
+                                            <Column hAlign="Center">
+                                                <Label text="{i18n>tableShowDetails}"/>
+                                            </Column>                                                                                                                                                                                
+                                        </columns>
+                                        <items>
+                                            <ColumnListItem type="Navigation" press="showDetails">
+                                                <cells>
+                                                    <Text text="{odataNorthwind>EmployeeID}"/>
+                                                    <Text text="{odataNorthwind>FirstName},{odataNorthwind>LastName}"/>
+                                                    <Text text="{odataNorthwind>Country}"/>
+                                                    <Text text="{odataNorthwind>City}"/>
+                                                    <core:Icon src="sap-icon://show" press="showOrders3"/>
+                                                </cells>
+                                            </ColumnListItem>
+                                        </items>
+                                </Table>
+                                <HBox id="ordersTable"></HBox>
+                            </Panel>     
+</core:FragmentDefinition>
