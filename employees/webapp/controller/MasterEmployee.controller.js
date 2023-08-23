@@ -14,7 +14,6 @@ sap.ui.define([
             onFilter: function () {             
                 let oModel = this.getView().getModel("jsonCountries"),
                     aFilters = [];
-                    
                 if (oModel.getProperty("/EmployeeId") !=="") {
                     //aFilters.push(new Filter("EmployeeID", FilterOperator.EQ, oModel.getProperty("/EmployeeId")));
                     aFilters.push(new Filter({
@@ -45,7 +44,7 @@ sap.ui.define([
                 let oItem = oEvent.getSource(),
                     oBindingContext = oItem.getBindingContext("odataNorthwind"),
                     sPostal = oBindingContext.getProperty("PostalCode");
-                    sap.m.MessageBox.success(sPostal);
+                    sap.m.MessageBox.success(sPostal);                    
             },
             onShowCity:function () {
                 var oConfig = this.getView().getModel("jsonConfig");
