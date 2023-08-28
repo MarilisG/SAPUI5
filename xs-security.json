@@ -1,0 +1,23 @@
+{
+  "xsappname": "sapui5",
+  "tenant-mode": "dedicated",
+  "description": "Security profile of called application",
+  "scopes": [
+    {
+      "name": "uaa.user",
+      "description": "UAA"
+    }
+  ],
+  "role-templates": [
+    {
+      "name": "Token_Exchange",
+      "description": "UAA",
+      "scope-references": [
+        "uaa.user"
+      ]
+    }
+  ],
+  "oauth2-configuration":{
+    "redirect-uris":["https://d0a3b039trial-dev-sapui5-approuter.cfapps.us10-001.hana.ondemand.com"]
+  }
+}

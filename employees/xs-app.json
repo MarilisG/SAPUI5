@@ -1,0 +1,32 @@
+{
+  "welcomeFile": "/index.html",
+  "authenticationMethod": "route",
+  "routes": [
+    {
+      "source": "^/v2/northwind/northwind.svc/(.*)$",
+      "target": "/v2/northwind/northwind.svc/$1",
+      "destination": "Northwind",
+      "authenticationType": "none",
+      "csrfProtection": false
+    },
+    {
+      "source": "^/sap/opu/odata/sap/YSAPUI5_SRV_01/(.*)$",
+      "target": "/sap/opu/odata/sap/YSAPUI5_SRV_01/$1",
+      "destination": "Logali",
+      "authenticationType": "none",
+      "csrfProtection": false
+    },    
+    {
+      "source": "^/resources/(.*)$",
+      "target": "/resources/$1",
+      "authenticationType": "none",
+      "destination": "ui5"
+    },
+    {
+      "source": "^(.*)$",
+      "target": "$1",
+      "service": "html5-apps-repo-rt",
+      "authenticationType": "xsuaa"
+    }
+  ]
+}
