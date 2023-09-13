@@ -1,0 +1,29 @@
+<mvc:View controllerName="employees.controller.Menu"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m">    
+ 
+    <Page id="page" title="{i18n>menu}" titleAlignment="Center">
+        <content>
+            <Panel headerText="{i18n>empleados}" expandable="true" expanded="true">
+                <GenericTile headerImage="sap-icon://add-employee" 
+							 class="sapUiTinyMarginBegin sapUiTinyMarginTop" 
+							 press="navToCreateEmployee">
+                    <TileContent footer="{i18n>crearEmpleado}"/> 
+                </GenericTile>
+                <GenericTile headerImage="sap-icon://employee-lookup" 
+							 class="sapUiTinyMarginBegin sapUiTinyMarginTop" 
+							 press="navToShowEmployee">
+                    <TileContent footer="{i18n>verEmpleado}"/> 
+                </GenericTile>                
+            </Panel>
+            <Panel headerText="{i18n>pedidos}" expandable="true" expanded="true">
+                <GenericTile headerImage="sap-icon://signature" 
+							 class="sapUiTinyMarginBegin sapUiTinyMarginTop" 
+							 press="openApp">
+                    <TileContent footer="{i18n>firmarPedido}"/> 
+                </GenericTile>            
+            </Panel>            
+        </content>
+    </Page>      
+ 
+</mvc:View>
