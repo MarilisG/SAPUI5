@@ -1,0 +1,124 @@
+<mvc:View xmlns:upload="sap.m.upload" controllerName="empleados.controller.CreateEmployee"
+    xmlns:mvc="sap.ui.core.mvc" 
+    xmlns:core="sap.ui.core" 
+    displayBlock="true"
+    xmlns="sap.m"
+    xmlns:html="http://www.w3.org/1999/xhtml" 
+	xmlns:form="sap.ui.layout.form" 
+	xmlns:u="sap.ui.unified">
+    
+    <Page >
+        <content>
+            <NavContainer id="wizardNavContainer">
+                <pages>
+                    <Page title="{i18n>crearEmpleado}" titleAlignment="Center" id="wizardContentPage">
+                        <content>
+                            <Wizard id="wizard" complete="wizardCompletedHandler">
+                                <WizardStep id="typeEmployeeStep" title="{i18n>tipoEmpleado}" validated="false">
+                                    <MessageStrip class="sapUiSmallMarginBottom" text="{i18n>step1}" showIcon="true"/>
+                                        <FlexBox >
+                                            <Button text="{i18n>interno}" press="toStep2" class="sapUiSmallMarginEnd">
+                                                <customData>
+                                                    <core:CustomData key="typeEmployee" value="interno"/> 
+                                                </customData>
+                                            </Button>    
+                                            <Button text="{i18n>autonomo}" press="toStep2" class="sapUiSmallMarginEnd">
+                                                <customData>
+                                                    <core:CustomData key="typeEmployee" value="autonomo"/> 
+                                                </customData>
+                                            </Button>
+                                            <Button text="{i18n>gerente}" press="toStep2" class="sapUiSmallMarginEnd">
+                                                <customData>
+                                                    <core:CustomData key="typeEmployee" value="gerente"/> 
+                                                </customData>
+                                            </Button>                                                                                                                            
+                                        </FlexBox>
+                                </WizardStep>
+                                <WizardStep id="dataEmployeeStep" title="{i18n>datosEmpleado}" validated="false">
+                                    <MessageStrip class="sapUiSmallMarginBottom" text="{i18n>step2}" showIcon="true"/>
+                                    <form:SimpleForm editable="true">
+                                        <Label text="{i18n>nombre}" required="true"/>
+										<Input valueState="{/_FirstNameState}" change="dataEmployeeValidation" value="{/FirstName}"/>
+										<Label text="{i18n>apellidos}" required="true"/>
+										<Input valueState="{/_LastNameState}" change="dataEmployeeValidation" value="{/LastName}"/>
+                                        <Label text="{i18n>dni}" required="true" visible="{= ${/_type} === 'autonomo' ? false : true}"/>
+										<Input valueState="{/_DniState}" change="validateDNI" value="{/Dni}" 
+                                               visible="{= ${/_type} === 'autonomo' ? false : true}"/>                                        
+                                        <Label text="{i18n>cif}" required="true" visible="{= ${/_type} === 'autonomo' ? true : false}"/>
+										<Input valueState="{/_CifState}" change="dataEmployeeValidation" value="{/_Cif}" 
+                                               visible="{= ${/_type} !== 'autonomo' ? false : true}"/>
+                                        <Label text="{i18n>saldo}" visible="{= ${/_type} === 'autonomo' ? false : true}"/>
+                                        <VBox>
+                                            <Slider value="{/_Salary}"
+                                                min="12000" 
+                                                max="80000"
+                                                step="1000" inputsAsTooltips="true" showAdvancedTooltip="true" enableTickmarks="true"
+                                                width="100%" progress="false" class="sapUiSmallMarginBottom" 
+                                                visible="{=  ${/_type} === 'interno'}">
+                                                <ResponsiveScale tickmarksBetweenLabels="100"/>
+                                            </Slider>
+                                            <Slider value="{/_Salary}"
+                                                min="50000" 
+                                                max="200000"
+                                                step="1000" inputsAsTooltips="true" showAdvancedTooltip="true" enableTickmarks="true"
+                                                width="100%" progress="false" class="sapUiSmallMarginBottom"
+                                                visible="{=  ${/_type} === 'gerente'}">
+                                                <ResponsiveScale tickmarksBetweenLabels="100"/>
+                                            </Slider>
+                                        </VBox>   
+                                        <Label text="{i18n>precio}" visible="{= ${/_type} === 'autonomo' ? true : false}"/>
+                                        <VBox>
+                                            <Slider value="{/_Salary}"
+                                                min="100" 
+                                                max="2000"
+                                                step="100" inputsAsTooltips="true" showAdvancedTooltip="true" enableTickmarks="true"
+                                                width="100%" progress="false" class="sapUiSmallMarginBottom"
+                                                visible="{=  ${/_type} === 'autonomo'}">
+                                                <ResponsiveScale tickmarksBetweenLabels="100"/>
+                                            </Slider>
+                                        </VBox>
+										<Label text="{i18n>fecha}" required="true"/>
+										<DatePicker valueState="{/_CreationDateState}" change="dataEmployeeValidation" dateValue="{/CreationDate}"/>											                                                                               
+                                    </form:SimpleForm>
+                                </WizardStep>
+                                <WizardStep id="infoEmployeeStep" title="{i18n>infoEmpleado}" validated="true" activate="optionalStepActivation">
+                                    <MessageStrip class="sapUiSmallMarginBottom" text="{i18n>step3}" showIcon="true"/>
+                                    <Label text="{i18n>comentario}" width="100%"/>
+									<TextArea value="{/Comments}" width="100%"/>  
+                                    <UploadCollection
+													id="UploadCollection"
+													maximumFilenameLength="55"
+													maximumFileSize="10"
+													multiple="true"
+													uploadUrl="/sap/opu/odata/sap/ZEMPLOYEES_SRV/Attachments"
+													sameFilenameAllowed="true"
+													instantUpload="false"
+													change="onFileChange"
+													beforeUploadStarts="onFileBeforeUpload"
+													noDataDescription="{i18n>arrastrarficheros}" />                                                              
+                                </WizardStep>                                                                                               
+                            </Wizard>
+                        </content>
+                        <footer>
+                            <OverflowToolbar > 
+                            <ToolbarSpacer/>
+                            <Button text="{i18n>cancel}" press="onCancel"></Button>
+                            </OverflowToolbar>
+                        </footer>
+                    </Page>
+                    <Page id="ReviewPage" title="{i18n>resumen}" titleAlignment="Center">
+                        <core:Fragment fragmentName="empleados.fragment.Review" type="XML"/>
+                        <footer>
+                            <Toolbar >
+                                <ToolbarSpacer />
+                                <Button text="{i18n>guardar}" press="onSaveEmployee"/>
+                                <Button text="{i18n>cancel}" press="onCancel"/>
+                            </Toolbar>
+                        </footer>
+                    </Page>
+                </pages>            
+            </NavContainer>
+        </content>
+    </Page>
+
+</mvc:View>
