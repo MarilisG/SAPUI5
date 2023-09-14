@@ -15,6 +15,10 @@ sap.ui.define([
             },
             onBeforeRendering: function () {
                 this._wizard = this.byId("wizard");
+
+			this._oNavContainer = this.byId("wizardNavContainer");
+			this._oWizardContentPage = this.byId("wizardContentPage");
+
                 this._model = new sap.ui.model.json.JSONModel({});
                 this.getView().setModel(this._model);
                 let oFirstStep = this._wizard.getSteps()[0];
@@ -22,15 +26,27 @@ sap.ui.define([
                 this._wizard.goToStep(oFirstStep);
                 oFirstStep.setValidated(false);
             },
-            onAfterRendering: function(){
+            onAfterRendering: function () {
+
+            },
+            _handleNavigationToStep: function (iStepNumber) {
+                // Esta funcion evita que se quede en el ReviewPage luego de Cancelar
+                var fnAfterNavigate = function () {
+                    this._wizard.goToStep(this._wizard.getSteps()[iStepNumber]);
+                    this._oNavContainer.detachAfterNavigate(fnAfterNavigate);
+                }.bind(this);
                 
+                this._oNavContainer.attachAfterNavigate(fnAfterNavigate);
+                this._oNavContainer.backToPage(this._oWizardContentPage.getId());
             },
             onCancel: function () {
                 MessageBox.confirm(this.oView.getModel("i18n").getResourceBundle().getText("confirmCancelar"), {
                     onClose: function (oAction) {
                         if (oAction === "OK") {
                             let oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-                            oRouter.navTo("RouteMenu", {}, true);
+                            oRouter.navTo("RouteMenu",{},true);
+                            this._handleNavigationToStep(0);
+                            this._wizard.discardProgress(this._wizard.getSteps()[0]);
                         }
                     }.bind(this)
                 });
@@ -96,7 +112,9 @@ sap.ui.define([
                     isValid = false;
                 } else {
                     oData._CifState = "None";
-                    oData.Dni = oData._Cif;
+                    if (oData._Cif) {
+                        oData.Dni = oData._Cif;
+                    }
                 }
 
                 if (isValid) {
@@ -220,7 +238,8 @@ sap.ui.define([
                 this.getView().getModel("odataModel").create("/Users", body, {
                     success: function (data) {
                         this.getView().setBusy(false);
-                        this.newUser = data.EmployeeId;
+                        //Por error esta llegando 0134 en lugar de 2134 al crear el empleado, por ahora reemplazo el 0 por un 2 
+                        this.newUser = '2' + data.EmployeeId.substring(1);  
                         MessageBox.information(this.oView.getModel("i18n").getResourceBundle().getText("nuevo") + ": " + this.newUser, {
                             onClose: function () {
                                 let wizardNavContainer = this.byId("wizardNavContainer");
@@ -230,12 +249,13 @@ sap.ui.define([
                             }.bind(this)
                         });
                         this.byId("UploadCollection").upload();
-                         
+
                     }.bind(this),
                     error: function () {
                         this.getView().setBusy(false);
-                    }
+                        MessageToast.show(this.getView().getModel("i18n").getResourceBundle().getText("noCreado"));
+                    }.bind(this)
                 });
-            } 
+            }
         });
     });

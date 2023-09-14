@@ -17,7 +17,8 @@
                 </GenericTile>                
             </Panel>
             <Panel headerText="{i18n>pedidos}" expandable="true" expanded="true">
-                <GenericTile headerImage="sap-icon://signature" 
+                <GenericTile id="linkApp"  
+                             headerImage="sap-icon://signature" 
 							 class="sapUiTinyMarginBegin sapUiTinyMarginTop" 
 							 press="openApp">
                     <TileContent footer="{i18n>firmarPedido}"/> 

@@ -5,7 +5,7 @@ sap.ui.define([
     /**
      * @param {typeof sap.ui.core.mvc.Controller} Controller
      */
-    function (Controller) {
+    function (Controller, sapMLib) {
         "use strict";
 
         return Controller.extend("employees.controller.Menu", {
@@ -21,7 +21,9 @@ sap.ui.define([
                 oRouter.navTo("ShowEmployee",{},false);                
             },
             openApp: function () {
-                
+                let url ="https://d0a3b039trial-dev-sapui5-approuter.cfapps.us10-001.hana.ondemand.com/employees/index.html";
+                let { URLHelper } = sapMLib;
+                URLHelper.redirect(url);
             }
         });
     });

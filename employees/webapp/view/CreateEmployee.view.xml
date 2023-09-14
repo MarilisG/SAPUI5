@@ -11,7 +11,7 @@
         <content>
             <NavContainer id="wizardNavContainer">
                 <pages>
-                    <Page title="{i18n>crearEmpleado}" titleAlignment="Center">
+                    <Page title="{i18n>crearEmpleado}" titleAlignment="Center" id="wizardContentPage">
                         <content>
                             <Wizard id="wizard" complete="wizardCompletedHandler">
                                 <WizardStep id="typeEmployeeStep" title="{i18n>tipoEmpleado}" validated="false">
