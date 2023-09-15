@@ -16,9 +16,6 @@ server:
             - /test-resources
           url: https://ui5.sap.com
         backend:
-          - path:
-            url:
-            client:
           - path: /sap
             url: http://erp13.sap4practice.com:9037
             client: '001'
